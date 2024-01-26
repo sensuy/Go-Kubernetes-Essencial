@@ -16,7 +16,15 @@ spec:
     spec:
       containers:
       - name: goserver
-        image: sensuy/hello-go:v5.2
+        image: sensuy/hello-go:v5.3
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3
+          timeoutSeconds: 1
+          successThreshold: 1
         ##Explo utilizando o configmap inteiro.
         envFrom:
           - configMapRef:
