@@ -16,11 +16,13 @@ spec:
     spec:
       containers:
       - name: goserver
-        image: sensuy/hello-go:v55
+        image: sensuy/hello-go:v5.2
         ##Explo utilizando o configmap inteiro.
         envFrom:
           - configMapRef:
              name: goserver-env
+          - secretRef:
+             name: goserver-secret
         volumeMounts:
           - mountPath: go/myfamily
             name: config
